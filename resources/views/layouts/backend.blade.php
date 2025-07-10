@@ -22,15 +22,6 @@
 </head>
 
 <body>
-  <div class="toast toast-onload align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-body hstack align-items-start gap-6">
-      <i class="ti ti-alert-circle fs-6"></i>
-      <div>
-        <h5 class="text-white fs-3 mb-1">Welcome to Modernize</h5>
-        <h6 class="text-white fs-2 mb-0">Easy to costomize the Template!!!</h6>
-      </div>
-      <button type="button" class="btn-close btn-close-white fs-2 m-0 ms-auto shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
   </div>
   <!-- Preloader -->
   <div class="preloader">
@@ -971,83 +962,7 @@
               <i class="ti ti-x fs-5 ms-3"></i>
             </a>
           </div>
-          <div class="modal-body message-body" data-simplebar="">
-            <h5 class="mb-0 fs-5 p-1">Quick Page Links</h5>
-            <ul class="list mb-0 py-2">
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Modern</span>
-                  <span class="text-muted d-block">/dashboards/dashboard1</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Dashboard</span>
-                  <span class="text-muted d-block">/dashboards/dashboard2</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Contacts</span>
-                  <span class="text-muted d-block">/apps/contacts</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Posts</span>
-                  <span class="text-muted d-block">/apps/blog/posts</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Detail</span>
-                  <span class="text-muted d-block">/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Shop</span>
-                  <span class="text-muted d-block">/apps/ecommerce/shop</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Modern</span>
-                  <span class="text-muted d-block">/dashboards/dashboard1</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Dashboard</span>
-                  <span class="text-muted d-block">/dashboards/dashboard2</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Contacts</span>
-                  <span class="text-muted d-block">/apps/contacts</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Posts</span>
-                  <span class="text-muted d-block">/apps/blog/posts</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Detail</span>
-                  <span class="text-muted d-block">/apps/blog/detail/streaming-video-way-before-it-was-cool-go-dark-tomorrow</span>
-                </a>
-              </li>
-              <li class="p-1 mb-1 bg-hover-light-black">
-                <a href="javascript:void(0)">
-                  <span class="d-block">Shop</span>
-                  <span class="text-muted d-block">/apps/ecommerce/shop</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>
@@ -1157,6 +1072,8 @@
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js')}}"></script>
   <script src="{{asset('assets/backend/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
   <script src="{{asset('assets/backend/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
+  <script src="{{ asset('assets/backend/js/dashboards/orderchart.js') }}"></script>
+  <script src="{{ asset('assets/backend/js/dashboards/lendingchart.js') }}"></script>
   <script src="{{asset('assets/backend/js/dashboards/dashboard.js')}}"></script>
 
   {{-- JS baru --}}

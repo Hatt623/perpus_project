@@ -16,6 +16,10 @@ use App\Http\Controllers\LendingController;
 use App\Http\Controllers\ReturnsController;
 use App\Http\Controllers\Backend\ReturnsController as BackendReturnsController;
 
+use App\Http\Controllers\Backend\AdminOrderChartController;
+use App\Http\Controllers\Backend\AdminLendingChartController;
+
+
 
 
     //Member/Guest 
@@ -49,6 +53,11 @@ Route::get('/return', [ReturnsController::class, 'index'])->name('return.index')
 Route::get('/return/{id}/', [ReturnsController::class, 'show'])->name('return.show');
 
 Auth::routes();
+
+// check chart
+Route::get('/chartorder-data', [AdminOrderChartController::class, 'getAdminOrderChartData']);
+Route::get('/chartlending-data', [AdminlendingChartController::class, 'getAdminLendingChartData']);
+
 
 Route::get('/logout', function () {
     Auth::logout();
