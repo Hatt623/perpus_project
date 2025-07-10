@@ -6,76 +6,31 @@
                 <div class=" container-fluid hero__fullwidth__spacing">
 
                     <div class="herobanner__inner">
-
-
-                            <div class="container herobannerarea__slider  slider__default__arrow slider__default__dot">
+                        <div class="container herobannerarea__slider  slider__default__arrow slider__default__dot">
+                            @foreach($latestBooks as $hero)
                                 <div class="herobannerarea__slider__single">
                                     <div class="row align-items-center">
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__text__side">
                                             <div class="herobanner__text__wraper ltn__slide-animation">
-                                                <h1 class="herobanner__title herobanner__title__color animated">Men Collection</h1>
+                                                <h1 class="herobanner__title herobanner__title__color animated">{{$hero->title}}</h1>
                                                 <div class="herobanner__text herobanner__text__color  animated">
-                                                    <p>Enchanting Styles for Dreamy Souls.</p>
+                                                    <p>{{$hero->description}}</p>
                                                 </div>
                                                 <div class="herobanner__button herobanner__button__color  animated">
-                                                    <a href="#" class="default__button" tabindex="0">Shop Now</a>
+                                                    <a href="/book/{{$hero->slug}}" class="default__button" tabindex="0">See book details!</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__img__side">
                                             <div class="herobanner__img">
-                                                <img src="{{asset('assets/frontend/img/herobanner/main_herobanner__2.png')}}" alt="">
+                                                <img src="{{ Storage::url($hero->image) }}" alt="{{ $hero->title }}"  style="max-height: 300px; object-fit: contain;">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="herobannerarea__slider__single">
-                                    <div class="row align-items-center">
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__text__side">
-                                            <div class="herobanner__text__wraper ltn__slide-animation">
-                                                <h1 class="herobanner__title herobanner__title__color animated">Women Collection</h1>
-                                                <div class="herobanner__text herobanner__text__color  animated">
-                                                    <p>Enchanting Styles for Dreamy Souls.</p>
-                                                </div>
-                                                <div class="herobanner__button herobanner__button__color  animated">
-                                                    <a href="#" class="default__button" tabindex="0">Shop Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__img__side">
-                                            <div class="herobanner__img">
-                                                <img src="{{asset('assets/frontend/img/herobanner/main_herobanner__1.png')}}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="herobannerarea__slider__single">
-                                    <div class="row align-items-center">
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__text__side">
-                                            <div class="herobanner__text__wraper ltn__slide-animation">
-                                                <h1 class="herobanner__title herobanner__title__color animated">Kids Collection</h1>
-                                                <div class="herobanner__text herobanner__text__color  animated">
-                                                    <p>Enchanting Styles for Dreamy Souls.</p>
-                                                </div>
-                                                <div class="herobanner__button herobanner__button__color  animated">
-                                                    <a href="#" class="default__button" tabindex="0">Shop Now</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__img__side">
-                                            <div class="herobanner__img">
-                                                <img src="{{asset('assets/frontend/img/herobanner/main_herobanner__3.png')}}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                                    
-                     </div> 
-                </div>
+                            @endforeach
+                        </div> 
+                    </div>
             </div>
          <!-- herobanner__end -->
 
@@ -84,19 +39,10 @@
             <div class="best__selling sp_bottom_80">
                 <div class="container">
 
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="section__title">
-                                <h2>Best Selling</h2>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                            <div class="best__selling__tab">
-                                <ul class="nav  best__selling__tab__wrap" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="product__tap__link active" data-bs-toggle="tab" data-bs-target="#projects__one" type="button">Books</button>
-                                    </li>
-                                </ul>
+                                <h2>Books</h2>
                             </div>
                         </div>
                     </div>
@@ -143,10 +89,6 @@
                                                     </ul>   
                                                 </div>
             
-                                                <div class="grid__wraper__badge">
-                                                    <span class="new__badge">New</span>
-                                                </div>
-            
                                             </div>
                                             <div class="grid__wraper__info">
                                                 <h3 class="grid__wraper__tittle">
@@ -185,114 +127,6 @@
         
         <!-- blog__section__start -->
 
-        <!-- fetaure__section__start -->
-        <div class="feature__2 sp_bottom_80">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="feature__2__single">
-                            <div class="feature__2__icon">
-                                <img src="{{asset('assets/frontend/img/feature/feature__1.svg')}}" alt="">
-                            </div>
-                            <div class="feature__2__text">
-                                <h4>Free Shipping</h4>
-                                <p>On orders over <strong>$99.</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="feature__2__single">
-                            <div class="feature__2__icon">
-                                <img src="{{asset('assets/frontend/img/feature/feature__2.svg')}}" alt="">
-                            </div>
-                            <div class="feature__2__text">
-                                <h4>Money Back</h4>
-                                <p>Money back in 15 days..</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="feature__2__single">
-                            <div class="feature__2__icon">
-                                <img src="{{asset('assets/frontend/img/feature/feature__3.svg')}}" alt="">
-                            </div>
-                            <div class="feature__2__text">
-                                <h4>Secure Checkout</h4>
-                                <p>100% Payment Secure.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="feature__2__single">
-                            <div class="feature__2__icon">
-                                <img src="{{asset('assets/frontend/img/feature/feature__4.svg')}}" alt="">
-                            </div>
-                            <div class="feature__2__text">
-                                <h4>Online Support</h4>
-                                <p>Ensure the book quality.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- fetaure__section__end -->
-
-        <!-- instagram__start -->
-        <div class="instagram">
-            <div class="container">
-                <div class="row">
-                    <div class="section__title text-center">
-                        <h2>Follow on Instagram</h2>
-                        <p><a href="#" target="_blank" title="https://www.instagram.com/">@marino-themes</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="instagram__img__wraper">
-                <div class="row row__custom__class instagram__slider__active slider__default__arrow slider__default__arrow slider__default__arrow--2">
-
-                    <div class="col-sm-12 column__custom__class">
-                        <div class="instagram__img">
-                            <a class="popup__img" href="{{asset('assets/frontend/img/instagram/gallery-1.jpg')}}"> <img src="{{asset('assets/frontend/img/instagram/gallery-1.jpg')}}" alt="Instagram Gallery Image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 column__custom__class">
-                        <div class="instagram__img">
-                            <a class="popup__img" href="{{asset('assets/frontend/img/instagram/gallery-2.jpg')}}"> <img src="{{asset('assets/frontend/img/instagram/gallery-2.jpg')}}" alt="Instagram Gallery Image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 column__custom__class">
-                        <div class="instagram__img">
-                            <a class="popup__img" href="{{asset('assets/frontend/img/instagram/gallery-3.jpg')}}"> <img src="{{asset('assets/frontend/img/instagram/gallery-3.jpg')}}" alt="Instagram Gallery Image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 column__custom__class">
-                        <div class="instagram__img">
-                            <a class="popup__img" href="{{asset('assets/frontend/img/instagram/gallery-4.jpg')}}"> <img src="{{asset('assets/frontend/img/instagram/gallery-4.jpg')}}" alt="Instagram Gallery Image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 column__custom__class">
-                        <div class="instagram__img">
-                            <a class="popup__img" href="{{asset('assets/frontend/img/instagram/gallery-6.jpg')}}"> <img src="{{asset('assets/frontend/img/instagram/gallery-6.jpg')}}" alt="Instagram Gallery Image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 column__custom__class">
-                        <div class="instagram__img">
-                            <a class="popup__img" href="{{asset('assets/frontend/img/instagram/gallery-7.jpg')}}"> <img src="{{asset('assets/frontend/img/instagram/gallery-7.jpg')}}" alt="Instagram Gallery Image"></a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <!-- instagram__end -->
-
         <!-- modal__section__start -->
         @foreach($book as $data)
 
@@ -304,33 +138,22 @@
                         <div class="row align-items-center">
                     
                             <div class="col-xl-6 col-lg-6 col-md-6">
-            
-                            <div class="grid__quick__img">
-                                <img src="{{Storage::url($data->image)}}" alt="">
-                            </div>
-            
-            
+                                <div class="grid__quick__img">
+                                    <img src="{{Storage::url($data->image)}}" alt="">
+                                </div>
                             </div>
             
                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                            <div class="grid__quick__content">
-                                <h3>{{$data->name}}</h3>
-                                <div class="quick__price">
-                                     <span>RP {{number_format($data->price,0,'.','.')}}</span>
-                                </div>
-                                <p>{{$data->description}}</p>
-
-                                <div class="featurearea__quantity">
-                                    <div class="qty-container">
-                                        <button class="qty-btn-minus btn-qty" type="button"><i class="fa fa-minus"></i></button>
-                                        <input type="text" name="qty" value="1" class="input-qty">
-                                        <button class="qty-btn-plus btn-qty" type="button"><i class="fa fa-plus"></i></button>
+                                <div class="grid__quick__content">
+                                    <h3>{{$data->title}}</h3>
+                                    <div class="quick__price">
+                                        <span>RP {{number_format($data->price,0,'.','.')}}</span>
                                     </div>
-                                    <a class="default__button" href="#">Add to cart</a>
-                                
+                                    <p>{{$data->description}}</p>
+                                    <div class="featurearea__quantity">
+                                        <a class="default__button" href="/book/{{$data->slug}}">See more details of this book!</a>        
+                                    </div>
                                 </div>
-
-                            </div>
                             </div>
             
                         </div>

@@ -6,7 +6,7 @@
                         <div class="footer__widget">
                             <h4 class="footer__title">About Us.</h4>
                             <div class="footer__content">
-                                <p>Minimal E-Commerce is a dynamic and innovative online retail platform that offers a wide range of products to customers worldwide.</p>
+                                <p>E-perpus is a bla bla bla bla bla lorem lorem lorem lorem</p>
                             </div>
                             <div class="footer__social__icon">
                                 <ul>
@@ -24,35 +24,8 @@
                                     
                                     
                                     <li><a target="_blank" title="Tiktok" href="https://www.tiktok.com/@shopify"><i class="fab fa-tiktok"></i></a></li>       
-                                    
-                                    
-                                    </ul>
+                                </ul>
                             </div>
-                            <div class="footer__bottom">
-            <h5>Guaranteed safe checkout</h5>
-                                    <div class="footer__img">
-                                        <ul>
-                                            <li>
-                                                <img src="{{asset('assets/frontend/img/footer/footer__1.svg')}}" alt="">
-                                            </li>
-                                            <li>
-                                                <img src="{{asset('assets/frontend/img/footer/footer__2.svg')}}" alt="">
-                                            </li>
-                                            <li>
-                                                <img src="{{asset('assets/frontend/img/footer/footer__3.svg')}}" alt="">
-                                            </li>
-                                            <li>
-                                                <img src="{{asset('assets/frontend/img/footer/footer__4.svg')}}" alt="">
-                                            </li>
-                                            <li>
-                                                <img src="{{asset('assets/frontend/img/footer/footer__5.svg')}}" alt="">
-                                            </li>
-                                            <li>
-                                                <img src="{{asset('assets/frontend/img/footer/footer__6.svg')}}" alt="">
-                                            </li>
-                                        </ul>
-                                    </div>
-                        </div>
                         </div>
                     </div>
 

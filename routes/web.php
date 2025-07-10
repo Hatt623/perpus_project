@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Admin;
 
@@ -23,7 +22,7 @@ use App\Http\Controllers\Backend\ReturnsController as BackendReturnsController;
 Route::get('/',[FrontendController::class, 'index']);
 
 Route::get('/book', [FrontendController::class,'book'])->name('book.index');
-Route::get('/book/{book}', [FrontendController::class,'singleProduct'])->name('book.show');
+Route::get('/book/{book}', [FrontendController::class,'singleBook'])->name('book.show');
 Route::get('/book/genre/{slug}', [FrontendController::class,'filterByCategory'])->name('book.filter');
 Route::get('/search', [FrontendController::class,'search'])->name('book.search');
 
@@ -39,7 +38,7 @@ Route::get('/lending', [LendingController::class, 'index'])->name('lending.index
 Route::post('/add-to-lending/{book}', [LendingController::class, 'addToLending'])->name('lending.add');
 Route::put('/lending/update/{id}', [LendingController::class,'updateLending'])->name('lending.update');
 Route::delete('/lending/{id}', [LendingController::class, 'remove'])->name('lending.remove');
-Route::get('/Lend', [LendingController::class, 'lend'])->name('lending.lend');
+Route::get('/lend', [LendingController::class, 'lend'])->name('lending.lend');
 
     //orders
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
@@ -65,8 +64,8 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 
     Route::resource('/book', BookController::class);
     Route::resource('/orders', BackendOrderController::class);
     Route::put('/orders/{id}/status', [BackendOrderController::class, 'updateStatus'])->name('orders.updateStatus');
-    Route::resource('/return', BackendReturnsController::class);
-    Route::put('/return/{id}/status', [BackendReturnsController::class, 'updateStatus'])->name('return.updateStatus');
+    Route::resource('/returns', BackendReturnsController::class);
+    Route::put('/returns/{id}/status', [BackendReturnsController::class, 'updateStatus'])->name('returns.updateStatus');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

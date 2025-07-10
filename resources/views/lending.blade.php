@@ -29,8 +29,7 @@
                             <tr>
                                 <th>Image</th>
                                 <th>Books</th>
-                                <th>Quantity</th>
-                                <th>Update</th>
+                                <th>Update quantity</th>
                                 <th>Remove</th>
                             </tr>
                         </thead>
@@ -45,11 +44,6 @@
                                 </td>
                                 <td class="cartarea__product__name">
                                     <a href="#">{{ $item->book->title }}</a>
-                                </td>
-                                <td class="cartarea__product__price__cart">
-                                    <span class="amount">
-                                        Rp {{ number_format($item->book->price, 0, ',', '.') }}
-                                    </span>
                                 </td>
                                 <td class="cartarea__product__quantity">
                                     <form action="{{ route('lending.update', $item->id) }}" method="POST">

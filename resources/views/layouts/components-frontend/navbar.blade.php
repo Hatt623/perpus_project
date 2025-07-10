@@ -4,11 +4,9 @@
             <div class="row common__row position-relative">
                 <div class="col-xl-2 col-lg-2 col-md-6">
                     <div class="headerarea__logo">
-                        <a href="{{route ('book.index')}}"><h1>E-Perpus</h1></a>
+                        <a href="{{url('/')}}"><h1>E-Perpus</h1></a>
                     </div>
                 </div>
-
-
                 <div class="col-xl-7 col-lg-7 col-md-6 main_menu_wrap">
 
                     <div class="headerarea__main__menu ">
@@ -23,7 +21,7 @@
                                     <a href="{{ route('book.index') }}">Books
                                     </a>
                                 </li>
-                                <li><a href="{{ url('about') }}">About</a> </li>
+                                <li><a href="#">About</a> </li>
                             </ul>
                         </nav>
                     </div>
@@ -87,9 +85,19 @@
 
                             </li>
 
-
-
-
+                            <li>
+                                <div class="headermiddle__account__img">
+                                    <!-- SVG Buku -->
+                                    <a href="{{route('lending.index')}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                        </svg>
+                                    </a>
+                                    <span class="bigcounter">
+                                        {{ $lendingItems->count() }}
+                                    </span>
+                                </div>
+                            </li>
 
                         </ul>
 
@@ -118,12 +126,11 @@
             </div>
             <div class="col-sm-4 col-5">
                 <div class="mobile-logo">
-                    <a class="logo__mobile" href="#"><img src="{{ asset('assets/frontend/img/logo/logo__1.png') }}" alt="logo"></a>
+                    <a href="{{url('/')}}"><h3>E-Perpus</h3></a>
                 </div>
             </div>
             <div class="col-sm-4 col-5">
                 <div class="header-right-wrap">
-
 
                     <div class="header__right__inner__wrap d-flex align-items-center justify-content-end">
 
@@ -136,7 +143,6 @@
                                         </circle>
                                         <path d="m16 15 3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
-
 
                                 </div>
                             </li>
@@ -172,8 +178,20 @@
 
                                     </div>
                                 </div>
+                            </li>
 
-
+                            <li>
+                                <div class="headermiddle__account__img">
+                                    <!-- SVG Buku -->
+                                    <a href="{{route('lending.index')}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                                        </svg>
+                                    </a>
+                                    <span class="bigcounter">
+                                        {{ $lendingItems->count() }}
+                                    </span>
+                                </div>
                             </li>
 
                         </ul>
@@ -193,7 +211,7 @@
 
             <div class="mobile__logo">
                 <a href="index.html">
-                    <img src="{{ asset('assets/frontend/img/logo/logo__1.png') }}" alt="Logo">
+                    <a href="{{url('/')}}"><h1>E-Perpus</h1></a>
                 </a>
             </div>
 
@@ -206,68 +224,14 @@
             <div class="mobile-menu-wrap">
 
                 <div class="mobile-navigation">
-
                     <nav>
                         <ul class="mobile-menu">
-                            <li class="menu-item-has-children"><a href="index.html">Home</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Fashion 1</a></li>
-                                    <li><a href="home-2.html">Fashion 2</a></li>
-                                    <li><a href="home-3.html">Fashion 3</a></li>
-                                    <li><a href="home-4.html">Beauty</a></li>
-                                    <li><a href="home-5.html">Jewelry</a></li>
-                                    <li><a href="home-6.html">T-Shirt</a></li>
-                                    <li><a href="home-7.html">Electronics</a></li>
-                                    <li><a href="home-8.html">Single book</a></li>
-                                    <li><a href="home-9-dark.html">Home Dark</a></li>
-                                </ul>
+                            <li class="menu-item-has-children"><a href="{{url ('/')}}">Home</a></li>
+
+                            <li class="menu-item-has-children"><a href="{{route('book.index')}}">Books</a></li>
+
+                            <li><a href="#">About</a>
                             </li>
-
-                            <li class="menu-item-has-children"><a href="shop.html">Shop</a>
-
-                                <ul class="dropdown">
-                                    <li class="menu-item-has-children">
-                                        <a class="menu__title" href="categories.html">Women's Fashion</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Tops & Blouses</a></li>
-                                            <li><a href="#">Sweaters & Cardigans</a></li>
-                                            <li><a href="#">Jackets & Coats</a></li>
-                                            <li><a href="#">Pants & Jeans</a></li>
-                                            <li><a href="#">Skirts</a></li>
-                                            <li><a href="#">Active wear</a></li>
-                                            <li><a href="#">Lingerie & Sleepwear</a></li>
-                                        </ul>
-                                    </li>
-
-
-                                    <li class="menu-item-has-children">
-                                        <a class="menu__title" href="categories.html">Men's Fashion</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Shirts</a></li>
-                                            <li>
-                                                <a href="#">T-Shirts & Polos
-                                                    <span class="header__label hot__color">Hot</span>
-                                                </a>
-                                            </li>
-                                            <li><a href="#">Sweaters & Hoodies</a></li>
-                                            <li><a href="#">Jackets & Blazers</a></li>
-                                            <li><a href="#">Pants & Chinos</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Suits & Formal wear</a></li>
-                                            <li><a href="#">Active wear</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-
-
-                            </li>
-
-
-                            <li><a href="{{ url('about') }}">About</a>
-                            </li>
-
-
                         </ul>
                     </nav>
 
@@ -276,26 +240,30 @@
 
             </div>
             <div class="mobile-curr-lang-wrap">
-
                 <div class="single-mobile-curr-lang">
                     <a class="mobile-account-active" href="#">My Account <i class="fa fa-angle-down"></i></a>
                     <div class="lang-curr-dropdown account-dropdown-active">
                         <ul>
                             @auth
-                            <li>
-                                <a href="{{ route('orders.index') }}">My Orders</a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                            </li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                            @else
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Create Account</a></li>
+                                <li>
+                                    <a href="{{ route('orders.index') }}">My Orders</a>
+                                </li>
+
+                                 <li>
+                                    <a href="{{ route('lending.index') }}">My Returns & Lendings</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>    
+                                </li>
+                                
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                @else
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Create Account</a></li>
                             @endauth
                         </ul>
                     </div>

@@ -44,10 +44,11 @@
                          aria-labelledby="projects__one">
                         <div class="row grid__responsive">
                             @if (isset($query))
-                            <h5 class="col-12">Hasil pencarian untuk: <strong>{{ $query }}</strong></h5>
+                            <h5 class="col-12">Results for: <strong>{{ $query }}</strong></h5>
                             @endif
                             @if ($book->isEmpty())
-                            <p class="text-muted">Tidak ada produk yang cocok dengan pencarian.</p>
+                            <p class="text-muted">None are matching the keyword.</p>
+                            <p class="text-muted">you can try searching for the Books, Genre, or Descriptions</p>
                             @else
                             @foreach ($book as $data)
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6">
@@ -55,9 +56,9 @@
                                     <div class="grid__wraper__img">
                                         <div class="grid__wraper__img__inner">
                                             <a href="{{ url('/book/' . $data->slug) }}">
-                                                <img class="primary__image" src="{{Storage::url($data->image)}}" alt="{{ $data->name }}">
+                                                <img class="primary__image" src="{{Storage::url($data->image)}}" alt="{{ $data->title }}">
                                                 <img class="secondary__image" src="{{ Storage::url($data->image) }}"
-                                                     alt="{{ $data->name }}">
+                                                     alt="{{ $data->title }}">
                                             </a>
                                         </div>
                                         <div class="grid__wraper__icon">
@@ -77,13 +78,10 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="grid__wraper__badge">
-                                            <span class="sale__badge">New</span>
-                                        </div>
                                     </div>
                                     <div class="grid__wraper__info">
                                         <h3 class="grid__wraper__title">
-                                            <a href="{{ url('/book/' . $data->slug) }}">{{ $data->name }}</a>
+                                            <a href="{{ url('/book/' . $data->slug) }}">{{ $data->title }}</a>
                                         </h3>
                                         <div class="grid__wraper__price">
                                             <span>Rp {{ number_format($data->price, 0, ',', '.') }}</span>

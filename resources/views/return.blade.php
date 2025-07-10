@@ -41,7 +41,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{$return->book->title}}</td>
                         <td>{{ $return->returned_at }}</td>
-                        <td>Rp {{ number_format($return->fines, 0, ',', '.') }}</td>
+                        <td>Rp {{ number_format($return->calculateFines(), 0, ',', '.') }}</td>
                         <td>
                             @if ($return->status == 'pending')
                                 <span class="badge bg-warning">Pending</span>

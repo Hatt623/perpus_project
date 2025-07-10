@@ -37,29 +37,9 @@
             </p>
             <p><strong>Lending Date:</strong> {{ $return->created_at }}</p>
             <p><strong>Will be returned at:</strong> {{ $return->returned_at }}</p>
-            <p><strong>Total fines:</strong> Rp {{ number_format($return->fines, 0, ',', '.') }}</p>
+            <p><strong>Total fines:</strong> Rp {{ number_format($return->calculateFines(), 0, ',', '.') }}</p>
         </div>
-
-        <div class="table-responsive">
-            <h4>Book</h4>
-            <table class="table table-bordered text-center align-middle">
-                <thead class="thead-dark bg-dark text-white">
-                    <tr>
-                        <th>#</th>
-                        <th>Product</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($returns as $item)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->book->title }}</td> 
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-
+        
         <div class="text-end mt-4">
             <a href="{{ route('return.index') }}" class="btn btn-secondary">« Back to returns & lendings</a>
         </div>

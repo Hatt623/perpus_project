@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use View;
 Use Auth;
 use App\Models\Cart;
+use App\Models\Lending;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,17 +21,18 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+   public function boot(): void
     {
-        View::composer('*', function($view){
+        View::composer('*', function ($view) {
             $cartItems = [];
+            $lendingItems = [];
 
-            if (Auth::check())
-            {
+            if (Auth::check()) {
                 $cartItems = Cart::with('book')->where('user_id', Auth::id())->get();
+                $lendingItems = Lending::with('book')->where('user_id', Auth::id())->get();
             }
-            
-            $view->with('cartItems', collect($cartItems));
+
+            $view->with('cartItems', collect($cartItems))->with('lendingItems', collect($lendingItems));
         });
     }
 }

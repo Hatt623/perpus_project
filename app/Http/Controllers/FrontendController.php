@@ -11,7 +11,9 @@ class FrontendController extends Controller
     public function index()
     {
         $book = Book::latest()->take(8)->get();
-        return view('index', compact('book'));
+        $latestBooks = Book::latest()->take(3)->get();
+
+        return view('index', compact('book','latestBooks'));
     }
 
     public function book()
@@ -21,9 +23,9 @@ class FrontendController extends Controller
         return view('book', compact('book','genre'));
     }
 
-    public function singleProduct(Book $book)
+    public function singleBook(Book $book)
     {
-        return view('single_product', compact('book'));
+        return view('single_book', compact('book'));
     }
 
     public function filterByCategory($slug)

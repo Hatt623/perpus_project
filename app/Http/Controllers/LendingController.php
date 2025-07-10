@@ -89,19 +89,21 @@ class LendingController extends Controller
         }
 
         // Simpan peminjaman ke tabel returns
-        foreach ($lendingItems as $item){
-        $returns = Returns::create([
-            'lending_id' => $item->id,
-            'user_id'    => auth()->id(),
-            'book_id'    => $item->book_id,
-            'returned_at' => now()->addDays(7), // Set tanggal pengembalian 7 hari dari sekarang
-            'fines' => 0,
-            'book_status' => 'good',
-            'status' => 'pending',
-            'lending_status'     => null,
-            
-        ]);
+       foreach ($lendingItems as $item){
+            for ($i = 0; $i < $item->qty; $i++) {
+                Returns::create([
+                    'lending_id'    => $item->id,
+                    'user_id'       => auth()->id(),
+                    'book_id'       => $item->book_id,
+                    'returned_at'   => now()->addDays(7),
+                    'fines'         => 0,
+                    'book_status'   => 'good',
+                    'status'        => 'pending',
+                    'lending_status'=> null,
+                ]);
+            }
         }
+
 
         // Simpan detail Lending ke order_lendings`
         // Attcach untuk nambah, detach menghapus, sync untuk update <- (bila pake pivot (Many to many) pakai ini)

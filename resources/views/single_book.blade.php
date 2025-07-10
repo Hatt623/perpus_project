@@ -7,11 +7,11 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb__title">
-                        <h3>Product</h3>
+                        <h3>Book</h3>
 
                         <ul>
                             <li><a href="/">Home</a></li>
-                            <li class="color__blue">Product Details</li>
+                            <li class="color__blue">Book Details</li>
                         </ul>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="single__product__wrap">
                         <div class="single__product__heading">
-                            <h2>{{ $book->name }}</h2>
+                            <h2>{{ $book->title }}</h2>
                         </div>
 
                         <div class="single__product__price mb-2">
@@ -56,6 +56,12 @@
                         <hr>
 
                         <div class="single__product__description mb-3">
+                            <h4>Genre: </h4></p>
+                            <p>{{ $book->genre->name }}</p>
+                        </div>
+
+                        <div class="single__product__description mb-3">
+                            <p><h4>Description: </h4></p>
                             <p>{{ $book->description }}</p>
                         </div>
 
@@ -79,41 +85,45 @@
                             </ul>
                         </div>
 
-                        <form action="{{ route('cart.add', $book->id) }}" method="POST">
-                            @csrf
-                            <div class="single__product__quantity mb-3">
-                                <div class="qty-container mb-2">
-                                    <button type="button" class="qty-btn-minus btn-qty">-</button>
-                                    <input type="number" name="qty" value="1" max="{{ $book->stock }}" class="input-qty">
-                                    <button type="button" class="qty-btn-plus btn-qty">+</button>
+                        <div class="d-flex align-items-center gap-4 flex-wrap">
+
+                            <form action="{{ route('cart.add', $book->id) }}" method="POST">
+                                @csrf
+                                <div class="single__product__quantity mb-3">
+                                    <div class="qty-container mb-2">
+                                        <button type="button" class="qty-btn-minus btn-qty">-</button>
+                                        <input type="number" name="qty" value="1" max="{{ $book->stock }}" class="input-qty">
+                                        <button type="button" class="qty-btn-plus btn-qty">+</button>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <button type="submit" class="default__button">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
-                            </button>
-                        </form>
+                                <button type="submit" class="default__button">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                            </form>
 
-                        @if ($book->status == 'Good')
+                            @if ($book->status == 'Good')
 
-                        <strong class="mb-3">Or</strong>
+                                <strong class="mx-2">Or</strong>
 
-                        <form action="{{ route('lending.add', $book->id) }}" method="POST">
-                            @csrf
-                            <div class="single__product__quantity mb-3">
-                                <div class="qty-container mb-2">
-                                    <button type="button" class="qty-btn-minus btn-qty">-</button>
-                                    <input type="number" name="qty" value="1" max="{{ $book->stock }}" class="input-qty">
-                                    <button type="button" class="qty-btn-plus btn-qty">+</button>
-                                </div>
-                            </div>
 
-                            <button type="submit" class="default__button">
-                                <i class="fas fa-shopping-cart"></i> Borrow it
-                            </button>
-                        </form>
+                                <form action="{{ route('lending.add', $book->id) }}" method="POST">
+                                    @csrf
+                                    <div class="single__product__quantity mb-3">
+                                        <div class="qty-container mb-2">
+                                            <button type="button" class="qty-btn-minus btn-qty">-</button>
+                                            <input type="number" name="qty" value="1" max="{{ $book->stock }}" class="input-qty">
+                                            <button type="button" class="qty-btn-plus btn-qty">+</button>
+                                        </div>
+                                    </div>
 
-                        @endif
+                                    <button type="submit" class="default__button">
+                                        <i class="fas fa-shopping-cart"></i> Borrow it
+                                    </button>
+                                </form>
+
+                            @endif
+                        </div>
 
                     </div>
                 </div>

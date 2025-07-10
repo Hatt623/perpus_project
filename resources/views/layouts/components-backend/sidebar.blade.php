@@ -52,11 +52,11 @@
             </li>
 
             <li class="sidebar-item">
-              <a class="sidebar-link" href="#" aria-expanded="false">
+              <a class="sidebar-link" href="{{route('backend.returns.index')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-aperture"></i>
                 </span>
-                <span class="hide-menu">Lendings</span>
+                <span class="hide-menu">Returns & Lendings</span>
               </a>
             </li>
 
