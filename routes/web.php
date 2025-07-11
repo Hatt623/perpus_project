@@ -56,10 +56,10 @@ Route::get('/chartorder-data', [AdminOrderChartController::class, 'getAdminOrder
 Route::get('/chartlending-data', [AdminlendingChartController::class, 'getAdminLendingChartData']);
 
 // Force logout
-// Route::get('/logout', function () {
-//     Auth::logout();
-//     return redirect('/');
-// });
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+});
 
 Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', Admin::class]], function ()
 {

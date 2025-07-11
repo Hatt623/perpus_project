@@ -13,7 +13,7 @@
                         Data Genre
                         <a href="{{ route('backend.genre.create') }}" class="btn btn-info btn-sm" style="color:white; float: right;" 
                             style="float: right;">
-                            Tambah
+                            Add
                         </a>
                     </div>
 

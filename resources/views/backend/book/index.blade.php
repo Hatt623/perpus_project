@@ -13,7 +13,7 @@
                         Data Book
                         <a href="{{ route('backend.book.create') }}" class="btn btn-info btn-sm" style="color:white; float: right;" 
                             style="float: right;">
-                            Tambah
+                            Add
                         </a>
                     </div>
 

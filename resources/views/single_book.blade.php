@@ -85,6 +85,7 @@
                             </ul>
                         </div>
 
+                        @if ($book->stock > 0)
                         <div class="d-flex align-items-center gap-4 flex-wrap">
 
                             <form action="{{ route('cart.add', $book->id) }}" method="POST">
@@ -124,6 +125,7 @@
 
                             @endif
                         </div>
+                        @endif
 
                     </div>
                 </div>
