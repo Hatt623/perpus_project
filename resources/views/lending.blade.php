@@ -39,7 +39,7 @@
                                 <td class="cartarea__product__thumbnail">
                                     <a href="#">
                                         <img src="{{ Storage::url($item->book->image)}}"
-                                            alt="{{ $item->book->name }}" width="80">
+                                            alt="{{ $item->book->title }}" width="80">
                                     </a>
                                 </td>
                                 <td class="cartarea__product__name">
