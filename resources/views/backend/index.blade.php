@@ -50,14 +50,14 @@
                     <div class="col-md-4">
                       <div>
                         <div class="d-flex align-items-baseline mb-4">
-                          <span class="round-8 text-bg-primary rounded-circle me-6"></span>
+                          <span class="round-8 text-bg-success rounded-circle me-6"></span>
                           <div>
                             <p class="fs-3 mb-1"></p>
                             <h6 class="fs-5 fw-semibold mb-0">Success</h6>
                           </div>
                         </div>
                         <div class="d-flex align-items-baseline mb-4 pb-1">
-                          <span class="round-8 text-bg-secondary rounded-circle me-6"></span>
+                          <span class="round-8 text-bg-warning rounded-circle me-6"></span>
                           <div>
                             <h6 class="fs-5 fw-semibold mb-0">Pending</h6>
                           </div>
@@ -89,14 +89,14 @@
                     <div class="col-md-4">
                       <div>
                         <div class="d-flex align-items-baseline mb-4">
-                          <span class="round-8 text-bg-primary rounded-circle me-6"></span>
+                          <span class="round-8 text-bg-success rounded-circle me-6"></span>
                           <div>
                             <p class="fs-3 mb-1"></p>
                             <h6 class="fs-5 fw-semibold mb-0">Success</h6>
                           </div>
                         </div>
                         <div class="d-flex align-items-baseline mb-4 pb-1">
-                          <span class="round-8 text-bg-secondary rounded-circle me-6"></span>
+                          <span class="round-8 text-bg-warning rounded-circle me-6"></span>
                           <div>
                             <h6 class="fs-5 fw-semibold mb-0">Pending</h6>
                           </div>

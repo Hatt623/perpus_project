@@ -19,9 +19,6 @@ use App\Http\Controllers\Backend\ReturnsController as BackendReturnsController;
 use App\Http\Controllers\Backend\AdminOrderChartController;
 use App\Http\Controllers\Backend\AdminLendingChartController;
 
-
-
-
     //Member/Guest 
 Route::get('/',[FrontendController::class, 'index']);
 
@@ -58,11 +55,11 @@ Auth::routes();
 Route::get('/chartorder-data', [AdminOrderChartController::class, 'getAdminOrderChartData']);
 Route::get('/chartlending-data', [AdminlendingChartController::class, 'getAdminLendingChartData']);
 
-
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect('/');
-});
+// Force logout
+// Route::get('/logout', function () {
+//     Auth::logout();
+//     return redirect('/');
+// });
 
 Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', Admin::class]], function ()
 {

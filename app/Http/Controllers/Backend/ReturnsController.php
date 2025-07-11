@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Returns;
+use App\Models\Book;
 use Auth;
 
 class ReturnsController extends Controller
@@ -53,6 +54,20 @@ class ReturnsController extends Controller
         $return ->  lending_status = $request->lending_status;
         $return ->  returned_at = $return->returned_at;
         $return->fines = $return->calculateFines();
+
+        if ($return->lending_status == 'returned') {
+            $return->lending_status = 'returned';
+            $return->save();
+
+            // Ambil buku terkait dan tambah quantity
+            $book = Book::find($return->book_id);
+            $book->stock += 1; // nambah balik buku yang dikembalikan
+            $book->save();
+
+            Returns::where('user_id', auth()->id())->delete();
+            toast('Book successfully returned', 'success');
+            return redirect()->route('backend.returns.index');
+        }
 
         $return->save();
         toast('Data updated successfully', 'success');
