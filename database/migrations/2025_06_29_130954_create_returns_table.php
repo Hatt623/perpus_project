@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('lending_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('book_id');
+            $table->string('lend_code');
             $table->datetime('returned_at');
             $table->integer('fines');
             $table->enum('book_status',['good','bad']);

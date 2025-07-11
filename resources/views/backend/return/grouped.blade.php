@@ -9,49 +9,47 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
-                        <span>Orders</span>
-                        <a href="{{ route('backend.orders.export.csv') }}" class="btn btn-sm btn-light text-dark">
-                            <i class="fas fa-file-csv "></i> Export CSV
-                        </a>
+                    <div class="card-header bg-secondary text-white">
+                        Returns & Lendings Data
+                        <h3 class="bg-secondary text-white">Lend Code: {{ $code }}</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" id="dataOrder">
+                            <table class="table" id="lendCodeOrder">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Order Code</th>
-                                        <th>User</th>
-                                        <th>Total Price</th>
-                                        <th>Status</th>
-                                        <th>Date</th>
-                                        <th>Aksi</th>
+                                        <th>Book Title</th>
+                                        <th>Lending status</th>
+                                        <th>Books will be returned at</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders as $order)
+                                    @foreach ($returns as $return)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $order->order_code }}</td>
-                                        <td>{{ $order->user->name }}</td>
-                                        <td>Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
+                                        <td>{{ $return->book->title }}</td>
                                         <td>
-                                            @if ($order->status == 'pending')
-                                                <span class="badge bg-warning text-dark">Pending</span>
-                                            @elseif($order->status == 'success')
-                                                <span class="badge bg-success">Success</span>
+                                            @if ($return->status == 'pending')
+                                                <span class="badge bg-warning">Pending</span>
+                                            @elseif ($return->status == 'success')
+                                                <span class="badge bg-success">success</span>
                                             @else
-                                                <span class="badge bg-danger">Canceled</span>
+                                                <span class="badge bg-danger">Not yet approved</span>
                                             @endif
                                         </td>
-                                        <td>{{ $order->created_at->format('d M Y') }}</td>
+
                                         <td>
-                                            <a href="{{ route('backend.orders.show', $order->id) }}"
+                                            {{ $return->returned_at}}
+                                        </td>
+
+                                        <td class="text-center">
+                                            <a href="{{ route('backend.returns.show', $return->id) }}"
                                                 class="btn btn-info btn-sm">Detail</a>
-                                            <form action="{{ route('backend.orders.destroy', $order->id) }}" 
+                                            <form action="{{ route('backend.returns.destroy', $return->id) }}" 
                                                 method="POST" style="display:inline;" 
-                                                onsubmit="return confirm('Are you sure you want to delete this order?');">
+                                                onsubmit="return confirm('Are you sure you want to delete this data?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger btn-sm">Delete</button>
@@ -62,6 +60,9 @@
                                 </tbody>
                             </table>
                         </div>
+                         <a href="{{ route('backend.returns.index') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to returns & lending list
+                        </a>
                     </div>
                 </div>
             </div>
@@ -73,6 +74,6 @@
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
     <script>
-        new DataTable('#dataOrder');
+        new DataTable('#lendCodeOrder');
     </script>
 @endpush

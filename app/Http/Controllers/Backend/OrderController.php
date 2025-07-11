@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Order;
 
+// import buat laporan 
+use Illuminate\Support\Facades\Response;
+
+
 class OrderController extends Controller
 {
     public function index()
@@ -50,5 +54,40 @@ class OrderController extends Controller
         $order->save();
         toast('Order status updated successfully', 'success');
         return redirect()->route('backend.orders.show', $id);
+    }
+
+    // Laporan
+    public function exportCSV()
+    {
+        $orders = Order::with('user')->get();
+
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=orders.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0",
+        ];
+
+        $columns = ['Order ID', 'User Name','Total Price', 'Status', 'Created At'];
+
+        $callback = function () use ($orders, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($orders as $order) {
+                fputcsv($file, [
+                    $order->id,
+                    optional($order->user)->name,
+                    $order->total_price,
+                    $order->status,
+                    $order->created_at->format('d-m-Y'),
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return Response::stream($callback, 200, $headers);
     }
 }

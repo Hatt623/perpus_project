@@ -124,7 +124,7 @@
                 </form>
             </div>
 
-            <a href="{{ route('backend.returns.index') }}" class="btn btn-secondary">
+            <a href="{{ route('backend.returns.group', $return->lend_code) }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back to returns & lending list
             </a>
 

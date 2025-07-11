@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Returns extends Model
 {
-    public $fillable = ['lending_id','user_id','book_id','returned_at','fines','book_status','status','lending_status'];
+    public $fillable = ['lending_id','user_id','book_id','lend_code','returned_at','fines','book_status','status','lending_status'];
 
     public function lending()
     {

@@ -9,24 +9,26 @@ use Carbon\Carbon;
 
 class AdminLendingChartController extends Controller
 {
+
     public function getAdminLendingChartData()
     {
-        $start = now()->subDays(6);
-        $end = now();
-
         $labels = [];
         $pending = [];
         $success = [];
 
-        for ($date = $start->copy(); $date <= $end; $date->addDay()) {
-            $tanggal = $date->format('Y-m-d');
-            $labels[] = $tanggal;
+        // logika for ambil 12 bulan terakhir
+        for ($i = 11; $i >= 0; $i--) {
+            $month = now()->subMonths($i)->startOfMonth();
+            $label = $month->format('M Y'); // contoh: Jul 2025
+            $labels[] = $label;
 
-            $pending[] = Returns::whereDate('created_at', $tanggal)
+            $pending[] = Returns::whereMonth('created_at', $month->month)
+                ->whereYear('created_at', $month->year)
                 ->where('status', 'pending')
                 ->count();
 
-            $success[] = Returns::whereDate('created_at', $tanggal)
+            $success[] = Returns::whereMonth('created_at', $month->month)
+                ->whereYear('created_at', $month->year)
                 ->where('status', 'success')
                 ->count();
         }

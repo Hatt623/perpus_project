@@ -72,6 +72,11 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 
     Route::put('/orders/{id}/status', [BackendOrderController::class, 'updateStatus'])->name('orders.updateStatus');
     Route::resource('/returns', BackendReturnsController::class);
     Route::put('/returns/{id}/status', [BackendReturnsController::class, 'updateStatus'])->name('returns.updateStatus');
+    Route::get('/returns/lend/{code}', [BackendReturnsController::class, 'showByLendCode'])->name('returns.group');
+
+    // laporan
+    Route::get('orders/export/csv', [BackendOrderController::class, 'exportCSV'])->name('orders.export.csv');
+    Route::get('returns/export/csv', [BackendReturnsController::class, 'exportCSV'])->name('returns.export.csv');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

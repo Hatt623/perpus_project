@@ -88,6 +88,8 @@ class LendingController extends Controller
             return redirect()->route('lending.index');
         }
 
+        $lendCode = 'LND-' . strtoupper(Str::random(8));
+
         // Simpan peminjaman ke tabel returns
        foreach ($lendingItems as $item){
             for ($i = 0; $i < $item->qty; $i++) {
@@ -95,6 +97,7 @@ class LendingController extends Controller
                     'lending_id'    => $item->id,
                     'user_id'       => auth()->id(),
                     'book_id'       => $item->book_id,
+                    'lend_code'     => $lendCode,
                     'returned_at'   => now()->addDays(7),
                     'fines'         => 0,
                     'book_status'   => 'good',
