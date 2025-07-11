@@ -35,15 +35,14 @@
                             <div class="footer__menu">
                             <ul>
                                 <li><a href="/account">My Account</a></li>
-                                <li><a href="/cart">My Cart</a></li>
-                                <li><a href="/pages/wishlist">Wishlist</a></li>
-                                <li><a href="/">Gift Card</a></li>
-                                <li><a href="/pages/contact">Need Help?</a></li>
+                                <li><a href="/cart">My Carts</a></li>
+                                <li><a href="/lending">My Lendings</a></li>
+                                <li><a href="/orders">My Orders</a></li>
+                                <li><a href="/return">My Returns </a></li>
                             </ul>
                         </div>
                         </div>
                     </div>
-
 
                     <div class="col-xl-2 col-lg-2 col-md-6 col-sm-4 col-6">
                         <div class="footer__widget">
@@ -87,7 +86,7 @@
             <div class="col-12 text-center">
                 <div class="copyright__text">
                     
-                    <p>© 2024 <strong>Minimalin</strong>. All rights reserved.</p>
+                    <p>© 2025 <strong>E-Perpus</strong>. All rights reserved.</p>
             
                 </div>
             </div>
