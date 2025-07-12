@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 use App\Models\Returns;
 use App\Models\Book;
+
+use Carbon\Carbon;
 use Auth;
 
 // import buat laporan
 use Illuminate\Support\Facades\Response;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReturnsController extends Controller
 {
@@ -53,6 +55,27 @@ class ReturnsController extends Controller
         return view('backend.return.grouped', compact('returns', 'code'));
     }
 
+    public function lendingReports(Request $request)
+    {
+        $query = Returns::with('book', 'user')->latest();
+
+        // Filter tanggal
+        if ($request->start_date && $request->end_date) {
+            $query->whereBetween('created_at', [
+                Carbon::parse($request->start_date)->startOfDay(),
+                Carbon::parse($request->end_date)->endOfDay(),
+            ]);
+        }
+
+        // Filter status
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        $returns = $query->get()->unique('lend_code');
+        return view('backend.return.reports', compact('returns'));
+    }
+
     public function destroy($id)
     {
         $return = Returns::findOrFail($id);
@@ -89,9 +112,9 @@ class ReturnsController extends Controller
             $book->stock += 1; // nambah balik buku yang dikembalikan
             $book->save();
 
-            Returns::where('user_id', auth()->id())->delete();
+            Returns::where('id', $id)->delete();
             toast('Book successfully returned', 'success');
-            return redirect()->route('backend.returns.index');
+            return redirect()->route('backend.returns.group',$return->lend_code);
         }
 
         $return->save();
@@ -100,33 +123,51 @@ class ReturnsController extends Controller
     }
 
     // Laporan
-    public function exportCSV()
+    // CSV
+    public function exportCSV(Request $request)
     {
-        $returns = Returns::with('user', 'book', 'lending')->get();
+        $query = Returns::with('user', 'book',);
+
+        // Filter tanggal
+        if ($request->start_date && $request->end_date) {
+            $query->whereBetween('created_at', [
+                Carbon::parse($request->start_date)->startOfDay(),
+                Carbon::parse($request->end_date)->endOfDay(),
+            ]);
+        }
+
+        // Filter status
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        $returns = $query->get(); // ← hasil terfilter
 
         $headers = [
-            "Content-type"        => "text/csv",
+            "Content-type" => "text/csv",
             "Content-Disposition" => "attachment; filename=returns.csv",
-            "Pragma"              => "no-cache",
-            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-            "Expires"             => "0",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0",
         ];
 
-        $columns = ['ID', 'User', 'Lend Code', 'Book Title', 'Status', 'Lending Status', 'Returned At', 'Fines'];
+        $columns = ['No', 'User', 'Lend Code', 'Book Title', 'Status', 'Lending Status', 'Returned At', 'Fines'];
 
         $callback = function () use ($returns, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
+            $No = 1;
             foreach ($returns as $return) {
                 fputcsv($file, [
-                    $return->id,
+                    $No++,
                     optional($return->user)->name,
                     $return->lend_code,
                     optional($return->book)->title,
                     $return->status,
                     $return->lending_status,
-                    optional($return->returned_at)->format('d-m-Y'),
+                    optional($return->created_at)->format('d M Y'),
+                    optional($return->returned_at)->format('d M Y'),
                     $return->calculateFines(),
                 ]);
             }
@@ -135,5 +176,30 @@ class ReturnsController extends Controller
         };
 
         return Response::stream($callback, 200, $headers);
+    }
+
+        // PDF
+    public function exportPDF(Request $request)
+    {
+        $query = Returns::with('user','book');
+
+        // Filter tanggal
+        if ($request->start_date && $request->end_date) {
+            $query->whereBetween('created_at', [
+                Carbon::parse($request->start_date)->startOfDay(),
+                Carbon::parse($request->end_date)->endOfDay(),
+            ]);
+        }
+
+        // Filter status
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        $returns = $query->get();
+
+        $pdf = Pdf::loadView('backend.return.pdf', compact('returns'))->setPaper('a4','landscape');
+
+        return $pdf->download('returns.pdf');
     }
 }

@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 use App\Models\Order;
 
+use Carbon\Carbon;
+
 // import buat laporan 
 use Illuminate\Support\Facades\Response;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
@@ -29,6 +31,27 @@ class OrderController extends Controller
         $order = Order::with('user')->findOrFail($id);
 
         return view('backend.order.show', compact('order'));
+    }
+
+    public function orderReports(Request $request)
+    {
+        $query = Order::with('user')->latest();
+
+        // Filter tanggal
+        if ($request->start_date && $request->end_date) {
+            $query->whereBetween('created_at', [
+                Carbon::parse($request->start_date)->startOfDay(),
+                Carbon::parse($request->end_date)->endOfDay(),
+            ]);
+        }
+
+        // Filter status
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        $orders = $query->get();
+        return view('backend.order.reports', compact('orders'));
     }
 
     public function destroy(string $id)
@@ -57,9 +80,25 @@ class OrderController extends Controller
     }
 
     // Laporan
-    public function exportCSV()
+    //CSV
+   public function exportCSV(Request $request)
     {
-        $orders = Order::with('user')->get();
+        $query = Order::with('user');
+
+        //  Filter tanggal
+        if ($request->start_date && $request->end_date) {
+            $query->whereBetween('created_at', [
+                Carbon::parse($request->start_date)->startOfDay(),
+                Carbon::parse($request->end_date)->endOfDay(),
+            ]);
+        }
+
+        //  Filter status
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        $orders = $query->get();
 
         $headers = [
             "Content-type"        => "text/csv",
@@ -69,19 +108,21 @@ class OrderController extends Controller
             "Expires"             => "0",
         ];
 
-        $columns = ['Order ID', 'User Name','Total Price', 'Status', 'Created At'];
+        $columns = ['No', 'User Name','Total Price', 'Status', 'Created At'];
 
         $callback = function () use ($orders, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
+            $No = 1;
             foreach ($orders as $order) {
                 fputcsv($file, [
-                    $order->id,
+                    $No++,
+                    $order->order_code,
                     optional($order->user)->name,
                     $order->total_price,
                     $order->status,
-                    $order->created_at->format('d-m-Y'),
+                    $order->created_at->format('d M Y'),
                 ]);
             }
 
@@ -89,5 +130,30 @@ class OrderController extends Controller
         };
 
         return Response::stream($callback, 200, $headers);
+    }
+
+    // PDF
+    public function exportPDF(Request $request)
+    {
+        $query = Order::with('user');
+
+        // Filter tanggal
+        if ($request->start_date && $request->end_date) {
+            $query->whereBetween('created_at', [
+                Carbon::parse($request->start_date)->startOfDay(),
+                Carbon::parse($request->end_date)->endOfDay(),
+            ]);
+        }
+
+        // Filter status
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
+
+        $orders = $query->get();
+
+        $pdf = Pdf::loadView('backend.order.pdf', compact('orders'))->setPaper('a4','landscape');
+
+        return $pdf->download('orders.pdf');
     }
 }

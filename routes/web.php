@@ -75,8 +75,14 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 
     Route::get('/returns/lend/{code}', [BackendReturnsController::class, 'showByLendCode'])->name('returns.group');
 
     // laporan
+    Route::get('/lendingreports', [BackendReturnsController::class, 'lendingReports'])->name('returns.reports');
+    Route::get('/orderreports', [BackendOrderController::class, 'orderReports'])->name('orders.reports');
+
     Route::get('orders/export/csv', [BackendOrderController::class, 'exportCSV'])->name('orders.export.csv');
     Route::get('returns/export/csv', [BackendReturnsController::class, 'exportCSV'])->name('returns.export.csv');
+
+    Route::get('/orders/export/pdf', [BackendOrderController::class, 'exportPDF'])->name('orders.export.pdf');
+    Route::get('/returns/export/pdf', [BackendReturnsController::class, 'exportPDF'])->name('returns.export.pdf');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

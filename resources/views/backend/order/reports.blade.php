@@ -11,6 +11,23 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
                         <span>Orders</span>
+                        <a href="{{ route('backend.orders.export.csv', request()->only(['start_date', 'end_date', 'status'])) }}" class="btn btn-sm btn-light text-dark">
+                            <i class="fas fa-file-csv "></i> Export CSV
+                        </a>
+                        <a href="{{ route('backend.orders.export.pdf', request()->only(['start_date', 'end_date', 'status'])) }}" class="btn btn-light text-dark">
+                            <i class="fas fa-file-pdf"></i> Export PDF
+                        </a>
+                        <form method="GET" action="{{ route('backend.orders.reports') }}" class="d-flex gap-2">
+                            <input type="date" name="start_date" class="form-control bg-white" required>
+                            <input type="date" name="end_date" class="form-control bg-white" required>
+
+                            <select name="status" class="form-control bg-white">
+                                <option value="">Show all statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="success">Success</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary ">Filter</button>
+                        </form>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -23,7 +40,6 @@
                                         <th>Total Price</th>
                                         <th>Status</th>
                                         <th>Date</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,17 +59,6 @@
                                             @endif
                                         </td>
                                         <td>{{ $order->created_at->format('d M Y') }}</td>
-                                        <td>
-                                            <a href="{{ route('backend.orders.show', $order->id) }}"
-                                                class="btn btn-info btn-sm">Detail</a>
-                                            <form action="{{ route('backend.orders.destroy', $order->id) }}" 
-                                                method="POST" style="display:inline;" 
-                                                onsubmit="return confirm('Are you sure you want to delete this order?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-                                            </form>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

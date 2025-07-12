@@ -11,7 +11,25 @@
                 <div class="card">
                    <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
                         <span>Returns & Lendings Data</span>
-                    </div>
+                        <a href="{{ route('backend.returns.export.csv', request()->only(['start_date', 'end_date', 'status'])) }}" class="btn btn-sm btn-light text-dark">
+                            <i class="fas fa-file-csv "></i> Export CSV
+                        </a>
+                        <a href="{{ route('backend.returns.export.pdf', request()->only(['start_date', 'end_date', 'status'])) }}" class="btn btn-light text-dark">
+                            <i class="fas fa-file-pdf"></i> Export PDF
+                        </a>
+                        <form method="GET" action="{{ route('backend.returns.reports') }}" class="d-flex gap-2">
+                            <input type="date" name="start_date" class="form-control bg-white" required>
+                            <input type="date" name="end_date" class="form-control bg-white" required>
+
+                            <select name="status" class="form-control bg-white">
+                                <option value="">Show all statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="success">Success</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary ">Filter</button>
+                        </form>
+                        
+                    </div>                
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table" id="lendOrder">
@@ -24,7 +42,6 @@
                                         <th>Lend Date</th>
                                         <th>Will be returned at</th>
                                         <th>Total fines</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,10 +62,6 @@
                                         <td>{{ $return->created_at }}</td>
                                         <td>{{ $return->returned_at }}</td>
                                         <td>Rp{{ number_format($return->calculateFines(), 0, ',', '.') }}</td>
-                                        <td>
-                                            <a href="{{ route('backend.returns.group', $return->lend_code) }}"
-                                                class="btn btn-info btn-sm">Detail</a>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
