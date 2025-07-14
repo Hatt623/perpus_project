@@ -79,6 +79,18 @@ class ReturnsController extends Controller
     public function destroy($id)
     {
         $return = Returns::findOrFail($id);
+
+        // Ambil buku terkait dan tambah quantity bila kondisi good
+        if ($return->book_status == 'good') {
+
+        $book = Book::find($return->book_id);
+        $book->stock += 1; // nambah balik buku yang dikembalikan
+        $book->save();
+
+        Returns::where('id', $id)->delete();
+        toast('Book successfully returned', 'success');
+        return redirect()->route('backend.returns.group',$return->lend_code);
+        }
         
         $return -> delete();
         toast('Data successfully deleted', 'success');
@@ -103,19 +115,20 @@ class ReturnsController extends Controller
         $return ->  returned_at = $return->returned_at;
         $return->fines = $return->calculateFines();
 
-        if ($return->lending_status == 'returned') {
-            $return->lending_status = 'returned';
-            $return->save();
+        // logiknya kurang logis komen aja
+        // if ($return->lending_status == 'returned') {
+        //     $return->lending_status = 'returned';
+        //     $return->save();
 
-            // Ambil buku terkait dan tambah quantity
-            $book = Book::find($return->book_id);
-            $book->stock += 1; // nambah balik buku yang dikembalikan
-            $book->save();
+        //     // Ambil buku terkait dan tambah quantity
+        //     $book = Book::find($return->book_id);
+        //     $book->stock += 1; // nambah balik buku yang dikembalikan
+        //     $book->save();
 
-            Returns::where('id', $id)->delete();
-            toast('Book successfully returned', 'success');
-            return redirect()->route('backend.returns.group',$return->lend_code);
-        }
+        //     Returns::where('id', $id)->delete();
+        //     toast('Book successfully returned', 'success');
+        //     return redirect()->route('backend.returns.group',$return->lend_code);
+        // }
 
         $return->save();
         toast('Data updated successfully', 'success');
@@ -141,7 +154,7 @@ class ReturnsController extends Controller
             $query->where('status', $request->status);
         }
 
-        $returns = $query->get(); // ← hasil terfilter
+        $returns = $query->get();
 
         $headers = [
             "Content-type" => "text/csv",
