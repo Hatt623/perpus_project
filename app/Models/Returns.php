@@ -32,18 +32,18 @@ class Returns extends Model
     {
         $fine = 0;
 
-        $dueDate = $this->returned_at;
-        $actualReturn = $this->updated_at;
-        
-        if($this->lending_status === 'borrowed' && $this->status === 'success') {
-            if ($actualReturn && $dueDate && $actualReturn->greaterThan($dueDate)) {
-                $daysLate = $dueDate->diffInDays($actualReturn);
-                $fine += 1000 * $daysLate;
-            }
+        $dueDate = $this->returned_at; 
+        // pengembalian sudah dilakukan → fix waktu
+        // belum dikembalikan → denda terus berjalan
+        $actualReturn = $this->lending_status == 'returned' ? $this->updated_at  : now();                         
 
-            if ($this->book_status === 'bad' && $this->book) {
-                $fine += $this->book->price;
-            }
+        if ($dueDate && $actualReturn->greaterThan($dueDate)) {
+            $daysLate = $dueDate->diffInDays($actualReturn);
+            $fine += 1000 * $daysLate;
+        }
+
+        if ($this->book_status === 'bad' && $this->book) {
+            $fine += $this->book->price;
         }
 
         return $fine;
