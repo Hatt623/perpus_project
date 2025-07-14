@@ -81,7 +81,7 @@
                                 <div class="mb-2">
                                     <label for="description">Book Description</label>
 
-                                    <textarea name="description" cols="30" rows="10" value="{{old ('description')}}" class="form-control @error ('description') is-invalid @enderror"></textarea>
+                                    <textarea name="description" cols="30" rows="10" value="{{old ('description')}}" class="form-control @error ('description') is-invalid @enderror">{{old ('description')}}</textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>

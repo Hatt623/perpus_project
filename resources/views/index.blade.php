@@ -12,9 +12,9 @@
                                     <div class="row align-items-center">
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__text__side">
                                             <div class="herobanner__text__wraper ltn__slide-animation">
-                                                <h1 class="herobanner__title herobanner__title__color animated">{{$hero->title}}</h1>
+                                                <h1 class="herobanner__title herobanner__title__color animated">{{Str::limit($hero->title)}}</h1>
                                                 <div class="herobanner__text herobanner__text__color  animated">
-                                                    <p>{{$hero->description}}</p>
+                                                    <p>{{Str::limit($hero->description)}}</p>
                                                 </div>
                                                 <div class="herobanner__button herobanner__button__color  animated">
                                                     <a href="/book/{{$hero->slug}}" class="default__button" tabindex="0">See book details!</a>
@@ -23,7 +23,7 @@
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12 herobanner__img__side">
                                             <div class="herobanner__img">
-                                                <img src="{{ Storage::url($hero->image) }}" alt="{{ $hero->title }}"  style="max-height: 300px; object-fit: contain;">
+                                                <img src="{{ Storage::url($hero->image) }}" alt="{{ $hero->title }}"  style="max-height: 400px; object-fit: contain;">
                                             </div>
                                         </div>
                                     </div>
