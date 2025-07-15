@@ -63,6 +63,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Book Title</th>
+                                <th>Book Cover</th>
                                 <th>Price Per Quantity</th>
                                 <th>Qty</th>
                                 <th>Subtotal</th>
@@ -73,6 +74,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->title }}</td>
+                                    <td> <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}" style="width: 60px; height: auto;"> </td>
                                     <td>Rp {{ number_format($item->pivot->price, 0, ',', '.') }}</td>
                                     <td>{{ $item->pivot->qty }}</td>
                                     <td>Rp {{ number_format($item->pivot->qty * $item->pivot->price, 0, ',', '.') }}</td>

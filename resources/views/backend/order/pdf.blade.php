@@ -8,7 +8,7 @@
             <th>User</th>
             <th>Total Price</th>
             <th>Status</th>
-            <th>Date</th>
+            <th>Order Date</th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +19,7 @@
             <td>{{ optional($order->user)->name }}</td>
             <td>Rp{{ number_format($order->total_price, 0, ',', '.') }}</td>
             <td>{{ ucfirst($order->status) }}</td>
-            <td>{{ $order->created_at->format('d M Y') }}</td>
+            <td>{{ $order->created_at->format('d M Y, H:i') }}</td>
         </tr>
         @endforeach
     </tbody>

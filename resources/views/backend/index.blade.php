@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+
 @section('content')
  <div class="container-fluid">
           <!--  Owl carousel -->
@@ -37,7 +38,46 @@
               </div>
             </div>
           </div>
-          <!--  Row 1 -->
+          {{-- Row 1 users table --}}
+          @section('styles')
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+          @endsection
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col">
+                      <div class="card">
+                          <div class="card-header bg-secondary text-white">
+                              Data Users
+                          </div>
+
+                          <div class="card-body">
+                              <div class="table table-responsive">
+                                  <table class="table" id="datausers">
+                                      <thead>
+                                          <tr>
+                                              <th> No </th>
+                                              <th> Users  </th>
+                                          </tr>
+
+                                      </thead>
+
+                                      <tbody>
+                                          @foreach ($totalUsers as $data)
+                                          <tr>
+                                              <td> {{$loop->iteration}} </td>
+                                              <td> {{$data->name}} </td>
+                                          </tr>
+                                          @endforeach
+                                      </tbody>
+                                  </table>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!--  Row 2 Chart-->
           <div class="row">
             <div class=" d-flex align-items-stretch">
               <div class="card w-100">
@@ -76,7 +116,7 @@
             <div class="col-lg-4 d-flex align-items-stretch flex-column">
             </div>
           </div>
-          {{-- Row 2 chart --}}
+          {{-- Row 3 chart --}}
           <div class="row">
             <div class=" d-flex align-items-stretch">
               <div class="card w-100">
@@ -117,3 +157,15 @@
           </div>
         </div>
 @endsection
+
+ @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('assets/backend/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
+    <script>
+    $(document).ready(function () {
+        $('#datausers').DataTable();
+    });
+    </script>
+    
+@endpush

@@ -20,6 +20,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Book Title</th>
+                                        <th>Book Cover</th>
                                         <th>Book status</th>
                                         <th>Lending status</th>
                                         <th>Books will be returned at</th>
@@ -30,7 +31,8 @@
                                     @foreach ($returns as $return)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $return->book->title }}</td>                                
+                                        <td>{{ $return->book->title }}</td>  
+                                        <td> <img src="{{ Storage::url($return->book->image) }}" alt="{{ $return->book->title }}" style="width: 60px; height: auto;"> </td>
                                         <td>
                                             @if ($return->book_status == 'good')
                                                 <span class="badge bg-success">Good</span>
@@ -49,7 +51,7 @@
                                         </td>
 
                                         <td>
-                                            {{ $return->returned_at}}
+                                            {{ $return->returned_at->format('d M Y, H:i')}}
                                         </td>
 
                                         <td class="text-center">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Order;
+use App\Models\Book;
 
 use Carbon\Carbon;
 
@@ -29,8 +30,9 @@ class OrderController extends Controller
     public function show(string $id)
     {
         $order = Order::with('user')->findOrFail($id);
+        $books = Book::findOrFail($id);
 
-        return view('backend.order.show', compact('order'));
+        return view('backend.order.show', compact('order','books'));
     }
 
     public function orderReports(Request $request)
@@ -108,7 +110,7 @@ class OrderController extends Controller
             "Expires"             => "0",
         ];
 
-        $columns = ['No', 'User Name','Total Price', 'Status', 'Created At'];
+        $columns = ['No','Order Code','User Name','Total Price', 'Status', 'Order Date'];
 
         $callback = function () use ($orders, $columns) {
             $file = fopen('php://output', 'w');
@@ -122,7 +124,7 @@ class OrderController extends Controller
                     optional($order->user)->name,
                     $order->total_price,
                     $order->status,
-                    $order->created_at->format('d M Y'),
+                    $order->created_at->format('d M Y, H:i'),
                 ]);
             }
 

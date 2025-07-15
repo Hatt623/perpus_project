@@ -164,7 +164,7 @@ class ReturnsController extends Controller
             "Expires" => "0",
         ];
 
-        $columns = ['No', 'User', 'Lend Code', 'Book Title', 'Status', 'Lending Status', 'Returned At', 'Fines'];
+        $columns = ['No', 'User', 'Lend Code', 'Book Title', 'Status', 'Lending Status','Lend Date', 'Returned At', 'Fines'];
 
         $callback = function () use ($returns, $columns) {
             $file = fopen('php://output', 'w');
@@ -179,8 +179,8 @@ class ReturnsController extends Controller
                     optional($return->book)->title,
                     $return->status,
                     $return->lending_status,
-                    optional($return->created_at)->format('d M Y'),
-                    optional($return->returned_at)->format('d M Y'),
+                    optional($return->created_at)->format('d M Y, H:i'),
+                    optional($return->returned_at)->format('d M Y, H:i'),
                     $return->calculateFines(),
                 ]);
             }

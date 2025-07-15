@@ -42,7 +42,7 @@
                                                 <span class="badge bg-danger">Canceled</span>
                                             @endif
                                         </td>
-                                        <td>{{ $order->created_at->format('d M Y') }}</td>
+                                        <td>{{ $order->created_at->format('d M Y, H:i') }}</td>
                                         <td>
                                             <a href="{{ route('backend.orders.show', $order->id) }}"
                                                 class="btn btn-info btn-sm">Detail</a>

@@ -144,7 +144,7 @@ class BookController extends Controller
     public function destroy(string $id)
     {
         $book = Book::findOrFail($id);
-        Storage::disk('public')->delete($book->$image);
+        Storage::disk('public')->delete($book->image);
         $book->delete();
         toast('Data successfully removed', 'success');
         return redirect()->route('backend.book.index');

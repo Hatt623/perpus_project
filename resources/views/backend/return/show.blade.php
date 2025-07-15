@@ -28,12 +28,12 @@
                     {{-- 2nd line --}}
                     <div class="col-md-4">
                         <div class="border rounded p-3 bg-light">
-                            <strong>Lend Date:</strong><br>{{ $return->created_at }}
+                            <strong>Lend Date:</strong><br>{{ $return->created_at->format('d M Y, H:i') }}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="border rounded p-3 bg-light">
-                            <strong>will be returned at:</strong><br>{{ $return->returned_at }}
+                            <strong>will be returned at:</strong><br>{{ $return->returned_at->format('d M Y, H:i') }}
                         </div>
                     </div>
                     <div class="col-md-4">

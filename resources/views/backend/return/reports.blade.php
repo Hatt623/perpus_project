@@ -59,8 +59,8 @@
                                                 <span class="badge bg-danger">Not yet approved</span>
                                             @endif
                                         </td>
-                                        <td>{{ $return->created_at }}</td>
-                                        <td>{{ $return->returned_at }}</td>
+                                        <td>{{ $return->created_at->format('d M Y, H:i') }}</td>
+                                        <td>{{ $return->returned_at->format('d M Y, H:i') }}</td>
                                         <td>Rp{{ number_format($return->calculateFines(), 0, ',', '.') }}</td>
                                     </tr>
                                     @endforeach

@@ -32,8 +32,8 @@
                     <span class="badge bg-danger">Not yet approved</span>
                 @endif
             </td>
-            <td>{{ $return->created_at->format('d M Y') }}</td>
-            <td>{{  $return->returned_at->format('d M Y')}}</td>
+            <td>{{ $return->created_at->format('d M Y, H:i') }}</td>
+            <td>{{  $return->returned_at->format('d M Y, H:i')}}</td>
         </tr>
         @endforeach
     </tbody>
