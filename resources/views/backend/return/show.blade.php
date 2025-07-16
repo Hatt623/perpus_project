@@ -5,7 +5,7 @@
 
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0 text-white">Detail Order</h5>
+            <h5 class="mb-0 text-white">Returns & Lendings Details</h5>
         </div>
 
         <div class="card-body">
@@ -13,8 +13,13 @@
             <!-- Informasi Pemesan -->
             {{-- 1st line --}}
             <div class="mb-4">
-                <h6 class="text-uppercase fw-bold text-muted mb-3">Order Details</h6>
+                <h6 class="text-uppercase fw-bold text-muted mb-3">Details</h6>
                 <div class="row g-3">
+                    <div class="">
+                        <div class="border rounded p-3 bg-light">
+                            <strong>Book title:</strong><br>{{$return->book->title}}
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="border rounded p-3 bg-light">
                             <strong>Name:</strong><br>{{ $return->user->name }}
