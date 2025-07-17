@@ -33,8 +33,6 @@
                                 <p class="login__description">Don't have an account yet? <a href="{{ route('register') }}" >Sign up for free</a></p>
                             </div>
 
-
-
                             <form method="POST" action="{{route ('login')}}">
                                 @csrf
 
@@ -58,15 +56,6 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-                                <div class="loginarea__form d-flex justify-content-between flex-wrap gap-2">
-                                    <div class="form__check">
-                                        <input type="checkbox" id="login__privacy" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <label for="login__privacy">Remember Me</label>
-                                    </div>
-                                    <div class="text-end login__form__link">
-                                        <a href="#">Forgot your password?</a>
-                                    </div>
                                 </div>
                                 <div class="loginarea__button text-center">
                                     <button type="submit" class="default__button">Log In</button>

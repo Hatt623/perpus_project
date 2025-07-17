@@ -19,7 +19,7 @@ class AdminLendingChartController extends Controller
         // logika for ambil 12 bulan terakhir
         for ($i = 11; $i >= 0; $i--) {
             $month = now()->subMonths($i)->startOfMonth();
-            $label = $month->format('M Y'); // contoh: Jul 2025
+            $label = $month->format('M Y');
             $labels[] = $label;
 
             $pending[] = Returns::whereMonth('created_at', $month->month)

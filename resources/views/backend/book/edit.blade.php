@@ -31,8 +31,7 @@
                                 <div class="mb-2">
                                     <label for="title">Book Title</label>
 
-                                    <input type="text" name="title" value="{{$book->title}}" class="form-control" 
-                                        @error('title') is-invalid @enderror>
+                                    <input type="text" name="title" value="{{$book->title}}" class="form-control @error('title') is-invalid @enderror">
                                     
                                     @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -44,8 +43,7 @@
                                 <div class="mb-2">
                                     <label for="writer">Book Writer</label>
 
-                                    <input type="text" name="writer" value="{{$book->writer}}" class="form-control" 
-                                        @error('writer') is-invalid @enderror>
+                                    <input type="text" name="writer" value="{{$book->writer}}" class="form-control @error('writer') is-invalid @enderror">
                                     
                                     @error('writer')
                                     <span class="invalid-feedback" role="alert">
@@ -57,8 +55,7 @@
                                 <div class="mb-2">
                                     <label for="publisher">Publisher</label>
 
-                                    <input type="text" name="publisher" value="{{$book->publisher}}" class="form-control" 
-                                        @error('publisher') is-invalid @enderror>
+                                    <input type="text" name="publisher" value="{{$book->publisher}}" class="form-control @error('publisher') is-invalid @enderror">
 
                                     @error('publisher')
                                     <span class="invalid-feedback" role="alert">
@@ -99,8 +96,7 @@
                                 <div class="mb-2">
                                     <label for="price">Price</label>
 
-                                    <input type="number" name="price" value="{{$book->price}}" class="form-control" 
-                                        @error('price') is-invalid @enderror>
+                                    <input type="number" name="price" value="{{$book->price}}" class="form-control @error('price') is-invalid @enderror">
 
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -112,8 +108,7 @@
                                 <div class="mb-2">
                                     <label for="stock">Stock</label>
 
-                                    <input type="number" name="stock" value="{{$book->stock}}" class="form-control" 
-                                        @error('stock') is-invalid @enderror>
+                                    <input type="number" name="stock" value="{{$book->stock}}" class="form-control @error('stock') is-invalid @enderror">
 
                                     @error('stock')
                                     <span class="invalid-feedback" role="alert">

@@ -13,12 +13,12 @@
                                 <div class="mb-2">
                                     <label for="">Genre Name</label>
 
-                                    <input type="text" name="name" class="form-control" 
-                                        @error('name') is-invalid @enderror>
-                                        @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"> 
+                                    
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
 
